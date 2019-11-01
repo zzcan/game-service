@@ -33,3 +33,19 @@
   "restart": true
 }
 ```
+### Linux 
+
+`lsof -i tcp:[port]` 查看某个端口进程
+
+`kill -9 [pid]` 杀掉某个进程
+
+### Nginx
+
+`nginx -t` 检查配置是否正确
+
+`nginx -s reload` 重启nginx
+
+反向代理 `proxy_pass` 路径问题
+
+#### nginx 代理 websocket
+
