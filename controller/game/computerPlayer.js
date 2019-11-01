@@ -1,5 +1,5 @@
 const EventEmitter = require('events');
-const Player = require('./Player');
+const Player = require('./player');
 
 let nextComputerId = 0;
 

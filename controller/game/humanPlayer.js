@@ -1,4 +1,4 @@
-const Player = require('./Player');
+const Player = require('./player');
 const ComputerPlayer = require('./ComputerPlayer');
 const Tunnel = require('./Tunnel');
 
