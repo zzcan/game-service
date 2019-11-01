@@ -1,6 +1,6 @@
 const Player = require('./player');
-const ComputerPlayer = require('./ComputerPlayer');
-const Tunnel = require('./Tunnel');
+const ComputerPlayer = require('./computerPlayer');
+const Tunnel = require('./tunnel');
 
 /**
  * 人类玩家实现，通过 WebSocket 信道接收和发送消息
