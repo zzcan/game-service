@@ -17,9 +17,11 @@ async function getAccessToken () {
       }
     });
     if(res && res.data && !res.data.errcode) {
+    const timeStamp = new Date().getTime()
+
       return {
         accessToken: res.data.access_token,
-        expires: res.data.expires_in
+        expires: timeStamp + res.data.expires_in * 1000
       }
     }
   } catch (error) {
@@ -52,7 +54,58 @@ async function login(code) {
   }
 }
 
+async function getTemplateList(access_token) {
+  try {
+    const res = await axios.request({
+      baseURL: wechatBaseUrl,
+      url: '/wxaapi/newtmpl/gettemplate',
+      method: 'GET',
+      params: {
+        access_token,
+      }
+    });
+    if(res && res.data && !res.data.errcode) {
+      return res.data.data
+    }
+  } catch (error) {
+    throw new Error('getTemplateList fail!')
+  }
+}
+
+async function sendMessage({
+  accessToken,
+  openId,
+  templateId,
+  page,
+  data,
+  miniprogramState,
+}) {
+  try {
+    const res = await axios.request({
+      baseURL: wechatBaseUrl,
+      url: `/cgi-bin/message/subscribe/send?access_token=${accessToken}`,
+      method: 'POST',
+      data: {
+        touser: openId,
+        template_id: templateId,
+        page,
+        data,
+        miniprogram_state: miniprogramState
+      }
+    });
+    if(res && res.data && !res.data.errcode) {
+      return true
+    } else {
+      console.log('---message send errcode---', res.data.errcode)
+    }
+  } catch (error) {
+    throw new Error('getTemplateList fail!')
+  }
+}
+
 module.exports = {
   getAccessToken,
-  login
+  login,
+  getTemplateList,
+  sendMessage,
 }
