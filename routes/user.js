@@ -73,7 +73,9 @@ router.get('/subcribeMessage', async (req, res) => {
     let accessToken = accessTokenStr ? JSON.parse(accessTokenStr) : null
     const timeStamp = new Date().getTime()
 
-    if(!accessToken || accessToken.expires_in <= timeStamp) {
+    debugSub('pre accessToken is %o', accessToken)
+
+    if(!accessToken || accessToken.expires <= timeStamp) {
       const accessTokenInfo = await getAccessToken()
 
       accessToken = accessTokenInfo
@@ -81,7 +83,7 @@ router.get('/subcribeMessage', async (req, res) => {
       await redisClient.setAsync('accessToken', JSON.stringify(accessTokenInfo));
     }
 
-    debugSub('accessToken is %o', accessToken)
+    debugSub('current accessToken is %o', accessToken)
 
     debugSub('tempIds is %o', tempIds)
 

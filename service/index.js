@@ -17,8 +17,8 @@ async function getAccessToken () {
       }
     });
     if(res && res.data && !res.data.errcode) {
-    const timeStamp = new Date().getTime()
-
+      const timeStamp = new Date().getTime()
+      
       return {
         accessToken: res.data.access_token,
         expires: timeStamp + res.data.expires_in * 1000
