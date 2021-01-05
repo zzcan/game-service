@@ -6,7 +6,7 @@
     "start": "DEBUG=user-request* nodemon --inspect=0.0.0.0:3001 ./bin/www"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "~4.16.1",
     "morgan": "~1.9.1",
